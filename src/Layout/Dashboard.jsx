@@ -1,8 +1,11 @@
 import { Link, Outlet } from "react-router-dom";
+import useAdmin from "../Hooks/useAdmin";
+import useInstructor from "../Hooks/useInstructor";
 
 
 const Dashboard = () => {
-   const isAdmin=true;
+   const isAdmin=useAdmin();
+   const isInstructor=useInstructor();
    
     return (
         <div className="drawer lg:drawer-open">
@@ -18,13 +21,40 @@ const Dashboard = () => {
           <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
             {/* Sidebar content here */}
             
-            {
-                isAdmin ? <><li><Link to='/dashboard/addclass'>Manage Class</Link></li>
-                <li><Link to='/dashboard/alluser'>Manage User</Link></li> </> : <>isInstructor ? <><li><Link to='/dashboard/addclass'>Add  Class</Link></li>
-            <li><Link to='/dashboard/instructorclass'>Instructor Class</Link></li> </> : <><li><Link to='/dashboard/selectedclass'>Student Selected Class</Link></li>
-            <li><Link to='/dashboard/enrolledclass'>Student Enrolled  Class</Link></li>
-            <li><Link to='/dashboard/payment'>Payment History</Link></li> </> </>
-            }
+            {isAdmin ? (
+  <>
+    <li>
+      <Link to='/dashboard/addclass'>Manage Class</Link>
+    </li>
+    <li>
+      <Link to='/dashboard/allusers'>Manage User</Link>
+    </li>
+  </>
+) : (
+  isInstructor ? (
+    <>
+      <li>
+        <Link to='/dashboard/addclass'>Add Class</Link>
+      </li>
+      <li>
+        <Link to='/dashboard/instructorclass'>Instructor Class</Link>
+      </li>
+    </>
+  ) : (
+    <>
+      <li>
+        <Link to='/dashboard/selectedclass'>Student Selected Class</Link>
+      </li>
+      <li>
+        <Link to='/dashboard/enrolledclass'>Student Enrolled Class</Link>
+      </li>
+      <li>
+        <Link to='/dashboard/payment'>Payment History</Link>
+      </li>
+    </>
+  )
+)}
+
             
             
 
