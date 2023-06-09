@@ -13,12 +13,12 @@ const NavBar = () => {
      <li> <Link to="/instructors">Instructors</Link> </li>
      <li> <Link to="/dashboard">Dashboard</Link> </li>
      <li> <Link to="/classes">Classes</Link> </li>
-     <li>{user?  <><img title={user.displayName} src={user.photoURL} className='w-11 h-10 rounded'></img>
-     <Link><button onClick={handleLogout}>LogOut</button></Link>
-     </> : <><Link to="/login">LogIn</Link> </>} </li>
+     <li>{user?  <div><img title={user.displayName} src={user.photoURL} className='w-15 h-10 rounded'></img>
+ 
+     </div> : <><Link to="/login">LogIn</Link> </>} </li>
      
-     <li> <Link to="/login">LogIn</Link> </li>
-     <li> <Link to=""><img className='w-10 h-10 rounded' src="" alt="" /></Link> </li>
+    <li>{user&& <Link><button onClick={handleLogout}>LogOut</button></Link> }</li>
+     
       
        
     
