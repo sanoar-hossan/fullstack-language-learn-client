@@ -1,15 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import { FaTrashAlt, FaUserShield } from "react-icons/fa";
+import { FaUserShield } from "react-icons/fa";
 
 
 const AllUsers = () => {
     const [axiosSecure] = useAxiosSecure();
-    const { data: users = [], refetch } = useQuery(['users'], async () => {
-        const res = await axiosSecure.get('/users')
-        return res.data;
-    })
+  const { data: users = [], refetch } = useQuery(['users'], async () => {
+    const res = await axiosSecure.get('/users');
+    return res.data;
+  });
 
     const handleMakeAdmin = user =>{
         fetch(`http://localhost:5000/users/admin/${user._id}`, {

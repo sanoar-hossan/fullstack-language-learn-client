@@ -24,7 +24,7 @@ const Dashboard = () => {
             {isAdmin ? (
   <>
     <li>
-      <Link to='/dashboard/addclass'>Manage Class</Link>
+      <Link to='/dashboard/manageclass'>Manage Class</Link>
     </li>
     <li>
       <Link to='/dashboard/allusers'>Manage User</Link>
