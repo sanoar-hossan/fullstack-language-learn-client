@@ -15,7 +15,7 @@ const useInstructor = () => {
       }
     }
   );
-console.log(instructorData);
+
   const isInstructor = instructorData?.instructor || false;
 
   return [isInstructor, isInstructorLoading];

@@ -61,7 +61,7 @@ const Dashboard = () => {
                 <Link to="/dashboard/addclass">Add Class</Link>
               </li>
               <li>
-                <Link to="/dashboard/instructorclass">Instructor Class</Link>
+                <Link to="/dashboard/myclass">Instructor Class</Link>
               </li>
             </>
           )}
