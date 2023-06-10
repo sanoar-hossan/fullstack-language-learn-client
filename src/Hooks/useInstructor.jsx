@@ -9,12 +9,14 @@ const useInstructor = () => {
   const { data: instructorData, isLoading: isInstructorLoading } = useQuery(
     ["instructor", user?.email],
     async () => {
-      const res = await axiosSecure.get(`/users/instructor/${user?.email}`);
+      if (user?.email) {
+        const res = await axiosSecure.get(`/users/instructor/${user?.email}`);
       return res.data;
+      }
     }
   );
-
-  const isInstructor = instructorData?.isInstructor || false;
+console.log(instructorData);
+  const isInstructor = instructorData?.instructor || false;
 
   return [isInstructor, isInstructorLoading];
 };

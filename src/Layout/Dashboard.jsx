@@ -7,15 +7,14 @@ import { useEffect, useState } from "react";
 const Dashboard = () => {
   const [isUserAdmin, setIsUserAdmin] = useState(false);
   const [isUserInstructor, setIsUserInstructor] = useState(false);
-  const [isLoading, setIsLoading] = useState(true); // Added loading state
+  const [isLoading, setIsLoading] = useState(true); 
 
   const isAdmin = useAdmin();
   const [isInstructor, isInstructorLoading] = useInstructor();
 
   useEffect(() => {
-    setIsLoading(true); // Set loading state to true initially
+    setIsLoading(true); 
 
-    // Fetch isAdmin value
     const [isAdminValue, isAdminLoading] = isAdmin;
 
     // Update the states and loading state
@@ -23,11 +22,11 @@ const Dashboard = () => {
     setIsUserInstructor(isInstructor);
     setIsLoading(isAdminLoading || isInstructorLoading);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    
+  }, [isAdmin, isInstructor, isInstructorLoading]);
 
   if (isLoading) {
-    // Show loading state if still loading
+   
     return <div>Loading...</div>;
   }
    

@@ -13,6 +13,8 @@ import Payment from "../Dashboard/Payment/Payment";
 import EnrolledClass from "../Dashboard/EnrolledClass/EnrolledClass";
 import AllUsers from "../Dashboard/AllUsers/AllUsers";
 import AddClass from "../Dashboard/AddClass/AddClass";
+import Classes from "../Pages/Home/Classes/Classes";
+import Instructor from "../Pages/Home/Instructors/Instructor";
 
 export const router = createBrowserRouter([
     {
@@ -31,6 +33,14 @@ export const router = createBrowserRouter([
         {
             path:'/register',
             element:<Register></Register>,
+        },
+        {
+            path:'/class',
+            element:<Classes></Classes>,
+        },
+        {
+            path:'/instructor',
+            element:<Instructor></Instructor>,
         },
         
       ]
