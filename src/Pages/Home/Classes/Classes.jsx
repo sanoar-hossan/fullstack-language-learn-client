@@ -8,9 +8,9 @@ import useAdmin from "../../../Hooks/useAdmin";
 const Classes = () => {
     const [axiosSecure] = useAxiosSecure();
     const {user}=useAuth();
-    const isAdmin = useAdmin();
+    const [isAdmin] = useAdmin();
     const { data: classes = [], refetch } = useQuery(['class'], async () => {
- const res = await axiosSecure.get('/class')
+ const res = await axiosSecure.get('/approveclass')
  return res.data;
 })
 
@@ -31,16 +31,20 @@ const Classes = () => {
     }
 
     const selectedClass = classes.find((classItem) => classItem.id === classId);
+    
 
     if (selectedClass.availableSeats === 0) {
       // Show message for zero available seats
       console.log("This class has no available seats.");
       return;
     }
-
-    // Handle class selection logic here
+    
+    
+    
     console.log(`Class ${selectedClass.name} selected.`);
   };
+ 
+   
 
 
 
@@ -64,10 +68,10 @@ const Classes = () => {
               className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
               onClick={() => handleSelectClass(classItem.id)}
               disabled={
-                classItem.availableSeats === 0 || user || isAdmin
+                classItem.availableSeats === 0  || isAdmin
               }
             >
-              {user || isAdmin ? "Logged In" : "Select Class"}
+              {user ? "Select Class" : "Logged in"}
             </button>
           </div>
         ))}

@@ -15,7 +15,7 @@ const ManageClass = () => {
   
     const approveClass = async (classId) => {
       await axiosSecure.patch(`/class/${classId}/approve`);
-      refetch(); // Manually trigger a refetch of the "classes" query
+      refetch(); 
     };
   
     const denyClass = async (classId) => {
@@ -27,7 +27,7 @@ const ManageClass = () => {
       await axiosSecure.patch(`/class/${classId}/feedback`, { feedback });
       setFeedback("");
       setFeedbackModalOpen(false); // Close the feedback modal
-      refetch(); // Manually trigger a refetch of the "classes" query
+      refetch(); 
     };
 
 
