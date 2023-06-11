@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
+import { FaDelicious } from 'react-icons/fa';
 
 const NavBar = () => {
   const {user, logOut, updateUserProfile}=useContext(AuthContext)
@@ -10,8 +11,8 @@ const NavBar = () => {
   }
     const navOptions=<>
      <li> <Link to="/">Home</Link> </li>
-     <li> <Link to="/instructors">Instructors</Link> </li>
-     <li> <Link to="/dashboard">Dashboard</Link> </li>
+     <li> <Link to="/instructor">Instructors</Link> </li>
+     <li> <Link to="/dashboard"><FaDelicious></FaDelicious> Dashboard</Link> </li>
      <li> <Link to="/class">Classes</Link> </li>
      <li>{user?  <div><img title={user.displayName} src={user.photoURL} className='w-15 h-10 rounded'></img>
  

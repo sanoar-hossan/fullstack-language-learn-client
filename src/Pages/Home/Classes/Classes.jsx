@@ -5,6 +5,7 @@ import useAuth from "../../../Hooks/useAuth";
 import useAdmin from "../../../Hooks/useAdmin";
 
 
+
 const Classes = () => {
     const [axiosSecure] = useAxiosSecure();
     const {user}=useAuth();
@@ -17,7 +18,7 @@ const Classes = () => {
 
  
 
-  const handleSelectClass = (classId) => {
+  const handleSelectClass = async(classId) => {
     if (!user) {
       // Redirect to login page or show login message
       console.log("Please log in to select the course.");
@@ -30,7 +31,14 @@ const Classes = () => {
       return;
     }
 
+   // const selectedClass = classes.find((classItem) => classItem.id === classId);
+
     const selectedClass = classes.find((classItem) => classItem.id === classId);
+
+  if (!selectedClass) {
+    console.log("Selected class not found.");
+    return;
+  }
     
 
     if (selectedClass.availableSeats === 0) {
@@ -39,6 +47,8 @@ const Classes = () => {
       return;
     }
     
+    console.log(classId);
+       
     
     
     console.log(`Class ${selectedClass.name} selected.`);
