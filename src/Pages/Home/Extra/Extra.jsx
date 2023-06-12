@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 const Extra = () => {
     return (
       
-        <div>
+        <div className='py-10'>
             <motion.div
           
           whileHover={{ scale: 1.05 }}
