@@ -18,9 +18,9 @@ const Classes = () => {
 
  
 
-  const handleSelectClass = async(classId) => {
+  const handleSelectClass = (classId) => {
     if (!user) {
-      // Redirect to login page or show login message
+      
       console.log("Please log in to select the course.");
       return;
     }
@@ -31,7 +31,7 @@ const Classes = () => {
       return;
     }
 
-   // const selectedClass = classes.find((classItem) => classItem.id === classId);
+    console.log(classId);
 
     const selectedClass = classes.find((classItem) => classItem.id === classId);
 
@@ -46,12 +46,22 @@ const Classes = () => {
       console.log("This class has no available seats.");
       return;
     }
+
+    fetch(`http://localhost:5000/selectedclass/${user?.email}`,{
+      method: 'POST',
+      headers: {
+          'content-type': 'application/json'
+      },
+      body: JSON.stringify(selectedClass)
+  })
+  
+  
     
-    console.log(classId);
+    
+   
        
-    
-    
-    console.log(`Class ${selectedClass.name} selected.`);
+    // console.log(`Class ${selectedClass.name} selected.`);
+    // console.log(`Class ${selectedClass} selected.`);
   };
  
    

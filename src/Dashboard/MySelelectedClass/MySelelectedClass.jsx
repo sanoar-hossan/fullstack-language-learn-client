@@ -11,9 +11,9 @@ const MySelelectedClass = () => {
     const [axiosSecure] = useAxiosSecure();
    
     const { data: selectedClasses = [], refetch } = useQuery(
-      ['selectedclass', user.email],
+      ['selectedclass', user?.email],
       async () => {
-        const res = await axiosSecure.get(`/selectedclass/${user.email}`);
+        const res = await axiosSecure.get(`/selectedclass/${user?.email}`);
         return res.data;
       }
     );
@@ -22,14 +22,7 @@ const MySelelectedClass = () => {
 
     return (
       
-      <div>
-    {selectedClasses.map((selectedClass) => (
-      <div key={selectedClass.id}>
-        <h3>{selectedClass.name}</h3>
-        {/* Render other class details */}
-      </div>
-    ))}
-  </div>
+   <div>{selectedClasses.length}</div>
         
     );
 };
