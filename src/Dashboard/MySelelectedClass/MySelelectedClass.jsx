@@ -2,12 +2,12 @@
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../Hooks/useAuth";
-
+import { useHistory } from 'react-router-dom';
 
 
 const MySelelectedClass = () => {
    const {user}=useAuth();
-
+   
     const [axiosSecure] = useAxiosSecure();
    
     const { data: selectedClasses = [], refetch } = useQuery(
@@ -18,11 +18,55 @@ const MySelelectedClass = () => {
       }
     );
     
+    const handleDelete = async (classId) => {
+      try {
+        await axiosSecure.delete(`/selectedclass/${user?.email}/${classId}`);
+        refetch(); // Refetch the selected classes after successful deletion
+      } catch (error) {
+        console.error("Error deleting selected class:", error);
+      }
+    };
+    const handlePay = async (classId) => {
+      try {
+        // Perform payment logic here (e.g., integrate with payment gateway)
+        // After successful payment, update the available seats and move the class to enrolled classes
+  
+        // Redirect to payment page (replace '/payment' with the actual payment page route)
+        history.push(`/payment/${classId}`);
+      } catch (error) {
+        console.error("Error processing payment:", error);
+      }
+    };
     
 
     return (
       
-   <div>{selectedClasses.length}</div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {selectedClasses.map((classItem) => (
+        <div className="bg-white rounded-lg shadow-md p-4" key={classItem._id}>
+          <img src={classItem.image} alt={classItem.name} className="w-full h-32 object-cover mb-4" />
+          <h2 className="text-xl font-semibold mb-2">{classItem.name}</h2>
+          <p className="text-gray-600 mb-2">Instructor: {classItem.instructorName}</p>
+          <p className="text-gray-600 mb-2">Available Seats: {classItem.availableSeats}</p>
+          <p className="text-gray-600 mb-4">Price: {classItem.price}</p>
+          <div className="flex gap-5">
+          <button
+            onClick={() => handleDelete(classItem._id)}
+            className="bg-red-500 hover:bg-red-600 text-white rounded ml-7 px-4 py-2"
+          >
+            Delete
+          </button>
+          <button
+            onClick={() => handlePay(classItem._id)}
+            className="bg-blue-500 hover:bg-blue-600 text-white rounded px-4 py-2 mt-2"
+            disabled={classItem.availableSeats === 0}
+          >
+            Pay
+          </button>
+          </div>
+        </div>
+      ))}
+    </div>
         
     );
 };
