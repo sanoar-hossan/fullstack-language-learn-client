@@ -31,7 +31,7 @@ const Classes = () => {
       return;
     }
 
-    console.log(classId);
+    
 
     const selectedClass = classes.find((classItem) => classItem.id === classId);
 

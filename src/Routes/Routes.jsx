@@ -9,7 +9,7 @@ import Register from "../Pages/Home/Register/Register";
 import ErrorPage from "../Shared/ErrorPage/ErrorPage";
 import Dashboard from "../Layout/Dashboard";
 import MySelelectedClass from "../Dashboard/MySelelectedClass/MySelelectedClass";
-import Payment from "../Dashboard/Payment/Payment";
+
 import EnrolledClass from "../Dashboard/EnrolledClass/EnrolledClass";
 import AllUsers from "../Dashboard/AllUsers/AllUsers";
 import AddClass from "../Dashboard/AddClass/AddClass";
@@ -17,6 +17,7 @@ import Classes from "../Pages/Home/Classes/Classes";
 import Instructor from "../Pages/Home/Instructors/Instructor";
 import MyClasses from "../Dashboard/MyClasses/MyClasses";
 import ManageClass from "../Dashboard/ManageClass/ManageClass";
+import Payment from "../Dashboard/Payment/Payment";
 
 export const router = createBrowserRouter([
     {
@@ -60,7 +61,7 @@ export const router = createBrowserRouter([
           element:<EnrolledClass></EnrolledClass>,
         },
         {
-          path:'payment',
+          path:'payment/:id',
           element:<Payment></Payment>,
         },
         {

@@ -2,7 +2,8 @@
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../Hooks/useAuth";
-import { useHistory } from 'react-router-dom';
+import { Link } from "react-router-dom";
+
 
 
 const MySelelectedClass = () => {
@@ -20,23 +21,19 @@ const MySelelectedClass = () => {
     
     const handleDelete = async (classId) => {
       try {
-        await axiosSecure.delete(`/selectedclass/${user?.email}/${classId}`);
+        await axiosSecure.delete(`/selectedclass/${user?.email}`);
         refetch(); // Refetch the selected classes after successful deletion
       } catch (error) {
         console.error("Error deleting selected class:", error);
       }
     };
-    const handlePay = async (classId) => {
-      try {
-        // Perform payment logic here (e.g., integrate with payment gateway)
-        // After successful payment, update the available seats and move the class to enrolled classes
-  
-        // Redirect to payment page (replace '/payment' with the actual payment page route)
-        history.push(`/payment/${classId}`);
-      } catch (error) {
-        console.error("Error processing payment:", error);
-      }
-    };
+    // const handlePay =  (classId) => {
+      
+    // };
+    //1.dynamic route
+    //2.useparams id
+    //3.const _id find opertion
+    
     
 
     return (
@@ -52,17 +49,20 @@ const MySelelectedClass = () => {
           <div className="flex gap-5">
           <button
             onClick={() => handleDelete(classItem._id)}
-            className="bg-red-500 hover:bg-red-600 text-white rounded ml-7 px-4 py-2"
+            className="bg-red-500 hover:bg-red-600 text-white rounded  px-4 py-2"
           >
             Delete
           </button>
-          <button
-            onClick={() => handlePay(classItem._id)}
-            className="bg-blue-500 hover:bg-blue-600 text-white rounded px-4 py-2 mt-2"
+          {/* <button
+            onClick={handlePay=`/dashboard/payment/${classItem._id}`}
+            className="bg-blue-500 hover:bg-blue-600 text-white rounded px-4 py-2 "
             disabled={classItem.availableSeats === 0}
           >
             Pay
-          </button>
+          </button> */}
+          <Link to={`/dashboard/payment/${classItem._id}`} className="bg-blue-500  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
+              Pay
+            </Link>
           </div>
         </div>
       ))}
