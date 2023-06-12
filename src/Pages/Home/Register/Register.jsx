@@ -32,7 +32,7 @@ const onSubmit = (data) => {
                 .then(() => {
                   const saveUser = { name: data.name, email: data.email }
                     reset();
-                    fetch('http://localhost:5000/users', {
+                    fetch('https://language-server.vercel.app/users', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'
@@ -141,7 +141,7 @@ const togglePasswordVisibility = () => {
                                 {errors.photoURL && <span className="text-red-600">Photo URL is required</span>}
                             </div>
                             <div className="form-control mt-6">
-                                <input className="btn btn-primary" type="submit" value="Sign Up" />
+                                <input className="btn btn-blue-600" type="submit" value="Sign Up" />
                             </div>
                         </form>
                        

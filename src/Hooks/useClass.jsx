@@ -14,7 +14,7 @@ const useClass = () => {
     }
   );
 
-  console.log(selectedClasses); // Log the selectedClasses for debugging
+  console.log(selectedClasses); 
 
   return {
     selectedClasses,

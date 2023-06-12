@@ -19,6 +19,7 @@ const NavBar = () => {
      </div> : <><Link to="/login">LogIn</Link> </>} </li>
      
     <li>{user&& <Link><button onClick={handleLogout}>LogOut</button></Link> }</li>
+    <li><Link to="/register">Register</Link></li>
      
       
        

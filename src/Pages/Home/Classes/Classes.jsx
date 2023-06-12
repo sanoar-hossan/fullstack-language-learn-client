@@ -47,7 +47,7 @@ const Classes = () => {
       return;
     }
 
-    fetch(`http://localhost:5000/selectedclass/${user?.email}`,{
+    fetch(`https://language-server.vercel.app/selectedclass/${user?.email}`,{
       method: 'POST',
       headers: {
           'content-type': 'application/json'

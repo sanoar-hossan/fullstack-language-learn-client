@@ -23,7 +23,7 @@ const AddClass = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:5000/addclass", classData);
+      const response = await axios.post("https://language-server.vercel.app/addclass", classData);
       if (response.data.insertedId) {
         reset();
         Swal.fire({
