@@ -22,4 +22,4 @@ Axios: Used for making HTTP requests to the backend server for fetching data.
 React Query: Employed for data fetching, caching, and synchronization with the server.
 Stripe: Integrated as the payment gateway for secure online payments.
 MongoDB: Used as the database to store instructor and course information.
-Live Site Link: 
+Live Site Link: https://language-school-fc7f9.web.app/
