@@ -1,18 +1,20 @@
 import { Outlet } from "react-router-dom";
 import Footer from "../Shared/Footer/Footer";
 import NavBar from "../Shared/NavBar/NavBar";
-import { motion } from "framer-motion";
+
 
 
 const Main = () => {
+    
     return (
         <div>
  
-
-        <NavBar></NavBar>
-     
-       <Outlet></Outlet>
-       <Footer></Footer>
+      <div >
+        <NavBar  />
+        <Outlet />
+        <Footer />
+      </div>
+  
       
         </div>
     );

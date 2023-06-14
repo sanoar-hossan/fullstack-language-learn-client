@@ -27,12 +27,7 @@ const MySelelectedClass = () => {
         console.error("Error deleting selected class:", error);
       }
     };
-    // const handlePay =  (classId) => {
-      
-    // };
-    //1.dynamic route
-    //2.useparams id
-    //3.const _id find opertion
+   
     
     
 

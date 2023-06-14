@@ -8,21 +8,18 @@ const useClass = () => {
   const { user, loading } = useAuth();
   const [axiosSecure] = useAxiosSecure();
 
-  const { data: selectedClasses = [], refetch } = useQuery(
-    ['selectedclass', user?.email],
+  const { data: enrolledClasses = [], refetch } = useQuery(
+    ['enrolledclass', user?.email],
     async () => {
-      const res = await axiosSecure.get(`/selectedclass/${user?.email}`);
-      console.log(res);
-      
+      const res = await axiosSecure.get(`/enrolledclass/${user?.email}`);
       return res.data;
-     
     }
   );
 
-  console.log(selectedClasses); 
+  console.log(enrolledClasses); 
 
   return {
-    selectedClasses,
+    enrolledClasses,
     refetch,
   };
 };

@@ -1,20 +1,25 @@
 import React from 'react';
 import useClass from '../../Hooks/useClass';
 import CheckoutForm from './CheckoutForm';
+import  './CheckoutForm.css'
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import { useParams } from 'react-router-dom';
 
 const Payment = () => {
-    const [selectedClasses]=useClass();
+    const {id}=useParams();
+    const {selectedClasses}=useClass();
     const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway);
+    const total = selectedClasses.reduce((sum, item) => sum + item.price, 0);
+    const price = parseFloat(total.toFixed(2))
     return (
-        <div>
-            console.log({selectedClasses.length});
+        <div className='full'>
+           
             <h1>payment</h1>
-            <CheckoutForm></CheckoutForm>
+          <p>{selectedClasses.price}</p>
 
             <Elements stripe={stripePromise}>
-                <CheckoutForm ></CheckoutForm>
+                <CheckoutForm id={id} selectedClasses={selectedClasses} price={price} ></CheckoutForm>
             </Elements>
         </div>
     );

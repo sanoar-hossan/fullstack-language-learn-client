@@ -17,6 +17,11 @@ import Classes from "../Pages/Home/Classes/Classes";
 import Instructor from "../Pages/Home/Instructors/Instructor";
 import MyClasses from "../Dashboard/MyClasses/MyClasses";
 import ManageClass from "../Dashboard/ManageClass/ManageClass";
+import Payment from "../Dashboard/Payment/Payment";
+import AdminRoute from "./AdminRoute";
+import InstructorRoute from "./InstructorRoute";
+import PrivateRoute from "./PrivateRoute";
+import PaymentHistory from "../Dashboard/Payment/PaymentHistory/PaymentHistory";
 
 
 export const router = createBrowserRouter([
@@ -50,35 +55,39 @@ export const router = createBrowserRouter([
     },
     {
       path:'dashboard',
-      element:<Dashboard></Dashboard>,
+      element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
       children:[
         {
           path:'selectedclass',
-          element:<MySelelectedClass></MySelelectedClass>,
+          element:<PrivateRoute><MySelelectedClass></MySelelectedClass></PrivateRoute>,
         },
         {
           path:'enrolledclass',
           element:<EnrolledClass></EnrolledClass>,
         },
-        // {
-        //   path:'payment/:id',
-        //   element:<Payment></Payment>,
-        // },
+        {
+          path:'payment/:id',
+          element:<Payment></Payment>,
+        },
+        {
+          path:'paymenthistory',
+          element:<PaymentHistory></PaymentHistory>,
+        },
         {
           path:'allusers',
-          element:<AllUsers></AllUsers>,
+          element:<AdminRoute><AllUsers></AllUsers></AdminRoute>,
         },
         {
           path:'addclass',
-          element:<AddClass></AddClass>,
+          element:<InstructorRoute><AddClass></AddClass></InstructorRoute>,
         },
         {
           path:'myclass',
-          element:<MyClasses></MyClasses>,
+          element:<InstructorRoute><MyClasses></MyClasses></InstructorRoute>,
         },
         {
           path:'manageclass',
-          element:<ManageClass></ManageClass>,
+          element:<AdminRoute><ManageClass></ManageClass></AdminRoute>,
         },
       ]
     }
