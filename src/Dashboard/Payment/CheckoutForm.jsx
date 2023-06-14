@@ -88,7 +88,7 @@ const CheckoutForm = ({ selectedClasses, price,id }) => {
                
             }
             console.log(payment)
-            axiosSecure.post("https://language-server.vercel.app//payment", payment)
+            axiosSecure.post("https://language-server.vercel.app/payment", payment)
             .then(res => {
                 console.log(res);
                 if (res.data.insertedId
