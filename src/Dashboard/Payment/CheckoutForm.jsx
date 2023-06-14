@@ -107,7 +107,7 @@ const CheckoutForm = ({ selectedClasses, price,id }) => {
                       console.log(result);
                     })
                 }
-            })
+            });
     }
 
 
@@ -135,6 +135,8 @@ const CheckoutForm = ({ selectedClasses, price,id }) => {
                     Pay
                 </button>
             </form>
+            {cardError && <p className="text-red-600 ml-8">{cardError}</p>}
+            {transactionId && <p className="text-green-500">Transaction complete with transactionId: {transactionId}</p>}
 </div>
 
     );

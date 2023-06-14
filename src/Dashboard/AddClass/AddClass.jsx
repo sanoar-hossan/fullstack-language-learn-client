@@ -15,7 +15,7 @@ const AddClass = () => {
     const classData = {
       name: data.className,
       image: data.classImage,
-      instructorimage: data.instructorimage,
+      
       instructorName: user.displayName,
       instructorEmail: user.email,
       availableSeats: parseInt(data.availableSeats),
@@ -77,12 +77,7 @@ const AddClass = () => {
               <input className="border border-black-100" type="text" value={user.email} readOnly />
             </div>
 
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">instructor Image</span>
-              </label>
-              <input type="text" {...register('instructorImage', { required: true })} placeholder="instructor image" className="input input-bordered" />
-              </div>
+            
 
             <div className="form-control">
               <label className="label">

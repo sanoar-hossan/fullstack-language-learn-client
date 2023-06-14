@@ -13,7 +13,7 @@ const Payment = () => {
     const total = selectedClasses.reduce((sum, item) => sum + item.price, 0);
     const price = parseFloat(total.toFixed(2))
     return (
-        <div className='full'>
+        <div className='w-full pl-4'>
            
             <h1>payment</h1>
           <p>{selectedClasses.price}</p>

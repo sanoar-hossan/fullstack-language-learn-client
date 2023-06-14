@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 import useAuth from "../../../Hooks/useAuth";
 import useAdmin from "../../../Hooks/useAdmin";
+import Swal from "sweetalert2";
 
 
 
@@ -21,13 +22,22 @@ const Classes = () => {
   const handleSelectClass = (classId) => {
     if (!user) {
       
-      console.log("Please log in to select the course.");
+      Swal.fire({
+        title: 'Please log in',
+        text: 'Please log in to select the course.',
+        icon: 'info',
+        confirmButtonText: 'OK',
+      });
       return;
     }
 
     if (isAdmin) {
-      // Show message for admin/instructor
-      console.log("You are logged in as admin/instructor.");
+      Swal.fire({
+        title: 'Admin/Instructor',
+        text: 'You are logged in as admin/instructor.',
+        icon: 'info',
+        confirmButtonText: 'OK',
+      });
       return;
     }
 
@@ -42,8 +52,12 @@ const Classes = () => {
     
 
     if (selectedClass.availableSeats === 0) {
-      // Show message for zero available seats
-      console.log("This class has no available seats.");
+      Swal.fire({
+        title: 'Class Not Found',
+        text: 'Selected class not found.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
       return;
     }
 
@@ -60,8 +74,7 @@ const Classes = () => {
     
    
        
-    // console.log(`Class ${selectedClass.name} selected.`);
-    // console.log(`Class ${selectedClass} selected.`);
+    
   };
  
    
@@ -85,12 +98,32 @@ const Classes = () => {
             </p>
             <p className="text-sm">Price: ${classItem.price}</p>
             <button
-              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-              onClick={() => handleSelectClass(classItem.id)}
-              disabled={
-                classItem.availableSeats === 0  || isAdmin
-              }
-            >
+  className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+  onClick={() => {
+    if (user) {
+      Swal.fire({
+        title: 'Select Class',
+        text: 'Are you sure you want to select this class?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          handleSelectClass(classItem.id);
+        }
+      });
+    } else {
+      Swal.fire({
+        title: 'Logged in',
+        text: 'Please log in to select a class.',
+        icon: 'info',
+        confirmButtonText: 'OK',
+      });
+    }
+  }}
+  disabled={classItem.availableSeats === 0 || isAdmin}
+>
               {user ? "Select Class" : "Logged in"}
             </button>
           </div>
